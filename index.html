@@ -1,3 +1,91 @@
-<p>Hello 大家好</p>
-<p>我是汪鹏，这是我的个人网站。 </p>
-<p>很高兴你来到这里, 你可以在以下的网站找到我</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>汪鹏的个人网站</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #50b3a2;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        header a:hover {
+            color: #ffffff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>汪鹏</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="index.html">主页</a></li>
+                    <li><a href="projects.html">项目</a></li>
+                    <li><a href="contact.html">联系方式</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>欢迎来到我的个人网站</h2>
+        <p>你可以在以下的网站找到我:</p>
+        <!-- Add links to your social media profiles, GitHub, etc. -->
+        <p>以下是我最近的项目:</p>
+        <!-- List of projects -->
+        <ul>
+            <li><strong>项目名称:</strong> 项目描述 - <a href="#">项目链接</a></li>
+            <!-- Repeat for each project -->
+        </ul>
+    </div>
+</body>
+</html>
