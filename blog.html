@@ -4,21 +4,67 @@
     <title>汪鹏的博客</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Add any CSS or Scripts here -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .blog-post {
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .post-title {
+            color: #333;
+            font-size: 24px;
+        }
+        .post-date {
+            color: #666;
+            font-size: 14px;
+        }
+        .post-content {
+            margin-top: 20px;
+            text-align: justify;
+        }
+    </style>
 </head>
 <body>
     <header>
-        granular materials
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="project.html">项目</a></li>
+                <li><a href="blog.html">博客</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        <section id="blog-posts">
-            <!-- html tutorials -->
-        </section>
+        <div class="blog-post">
+            <h2 class="post-title">我的第一个博客文章</h2>
+            <p class="post-date">发布日期：2023-11-27</p>
+            <div class="post-content">
+                <p>这是我的第一个博客文章的内容。在这里，我会分享一些个人的想法和经历。</p>
+                <p>你可以在这个部分详细地展开你的内容。</p>
+            </div>
+        </div>
+
+        <div class="blog-post">
+            <h2 class="post-title">关于我的研究项目</h2>
+            <p class="post-date">发布日期：2023-11-26</p>
+            <div class="post-content">
+                <p>在这篇文章中，我将介绍我的研究项目。这个项目对我来说非常重要。</p>
+                <p>在这里详细描述你的研究项目和你从中学到的东西。</p>
+            </div>
+        </div>
     </main>
 
     <footer>
-        <!-- Your website's footer -->
+        <p>&copy; 2023 汪鹏</p>
     </footer>
 </body>
 </html>
