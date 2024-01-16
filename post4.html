@@ -43,7 +43,7 @@
     <main>
         <article>
             <h1>Mechanics of materials note</h1>
-            <p class="post-date">Posted on: 3 January 2024</p>
+            <p class="post-date" id="postDate">Posted on: <!-- Current date will be displayed here --></p>
             <div class="post-content">
                 <h1>Stress</h1>
                 <p>When a material is subjected to an external force, a resisting force is set up within the component.</p>
@@ -56,5 +56,10 @@
     <footer>
         <!-- Your website's footer -->
     </footer>
+
+    <script>
+        // JavaScript to acquire and display the current date
+        document.getElementById('postDate').innerHTML += ' ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
 </body>
 </html>
