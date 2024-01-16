@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Blog Post Title - 汪鹏的博客</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Add CSS and JavaScript if needed -->
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
         }
         header, footer {
             background-color: #333;
@@ -23,29 +24,41 @@
             margin: auto;
             padding: 20px;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .post-content:hover {
+            transform: scale(1.02);
         }
         .post-content h1 {
             color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
         .post-date {
             color: #666;
             font-size: 0.85em;
+        }
+        footer {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
         /* Add more styles as needed */
     </style>
 </head>
 <body>
     <header>
-        <!-- Your website's navigation bar -->
+        <h1>汪鹏的博客</h1>
     </header>
 
     <main>
-        <article>
-            <h1>Mechanics of materials note</h1>
+        <article class="post-content">
+            <h1>Mechanics of Materials Note</h1>
             <p class="post-date" id="postDate">Posted on: <!-- Current date will be displayed here --></p>
-            <div class="post-content">
-                <h1>Stress</h1>
+            <div>
                 <p>When a material is subjected to an external force, a resisting force is set up within the component.</p>
 
                 <!-- Add more content as needed -->
@@ -54,7 +67,7 @@
     </main>
 
     <footer>
-        <!-- Your website's footer -->
+        <p>© 2024 汪鹏的博客. All rights reserved.</p>
     </footer>
 
     <script>
