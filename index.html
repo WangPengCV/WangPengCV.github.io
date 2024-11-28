@@ -78,8 +78,13 @@
         <!-- Add more content here -->
     </div>
 
-    <footer>
-        <p>&copy; 2023 Wang Peng</p>
+   <footer>
+        <p>&copy; <span id="year"></span> Wang Peng</p>
     </footer>
+
+    <script>
+        // JavaScript to update the year dynamically
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
