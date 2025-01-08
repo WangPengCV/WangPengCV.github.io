@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>结婚照相册</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .album {
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .album img {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Main</a></li>
+                <li><a href="project.html">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>我们的结婚照</h1>
+        <div class="album">
+            <img src="wedding1.jpg" alt="结婚照1" class="album-image">
+            <!-- 你可以在这里添加更多照片 -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 结婚照博客</p>
+    </footer>
+
+    <script>
+        // 自动轮播图片
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.album-image');
+        const totalImages = images.length;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            showImage(currentIndex);
+        }
+
+        // 初始化显示第一张图片
+        showImage(currentIndex);
+
+        // 每5秒切换到下一张图片
+        setInterval(nextImage, 5000);
+    </script>
+</body>
+</html>
