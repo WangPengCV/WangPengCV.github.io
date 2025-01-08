@@ -111,25 +111,20 @@
         </audio>
     </div>
 
-    <script>
+    <script> 
         // 自动轮播图片
         let currentIndex = 0;
         const images = document.querySelectorAll('.album-image');
         const totalImages = images.length;
-        const music = document.getElementById('background-music'); // 获取音乐元素
-        let musicPlayed = false; // 音乐是否已经播放过
+        const music = document.getElementById('background-music'); 
 
         function showImage(index) {
-            console.log('显示图片:', index); // 调试日志，检查是否进入该函数
             images.forEach((img, i) => {
-                // 这里加上一些检查，确保每次图片完全加载后显示
-                img.style.display = (i === index) ? 'block' : 'none';
+                img.style.display = i === index ? 'block' : 'none';
             });
 
-            // 在显示第二张图片时开始播放音乐，且音乐只会播放一次
-            if (index === 1 && !musicPlayed) {
-                music.play();  // 播放音乐
-                musicPlayed = true;  // 标记音乐已播放
+            if (index === 0) {
+                music.play();  
             }
         }
 
@@ -138,10 +133,8 @@
             showImage(currentIndex);
         }
 
-        // 初始化显示第一张图片
         showImage(currentIndex);
 
-        // 每5秒切换到下一张图片
         setInterval(nextImage, 5000);
 
     </script>
