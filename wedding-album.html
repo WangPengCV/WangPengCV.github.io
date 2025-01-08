@@ -130,6 +130,9 @@
             images.forEach((img, i) => {
                 img.style.display = i === index ? 'block' : 'none';
             });
+            if (index === 0) {
+                music.play();  // 播放音乐
+            }
         }
 
         function nextImage() {
