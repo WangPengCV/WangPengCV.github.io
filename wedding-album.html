@@ -45,7 +45,7 @@
             overflow: hidden;
         }
 
-        .album-image { /* 修改为 .album-image，与 HTML 类名一致 */
+        .album-image {
             width: 100%;
             height: auto;
             display: none;
@@ -102,7 +102,7 @@
 
     <!-- 音乐播放器 -->
     <div class="audio-player">
-        <audio id="background-music" controls loop>
+        <audio id="background-music" controls autoplay loop>
             <source src="weddingImage/chose.mp3" type="audio/mp3">
             您的浏览器不支持音频元素。
         </audio>
@@ -119,10 +119,6 @@
             images.forEach((img, i) => {
                 img.style.display = i === index ? 'block' : 'none';
             });
-
-            if (index === 0 && music.paused) {
-                music.play().catch(err => console.log('音乐播放失败:', err));
-            }
         }
 
         function nextImage() {
