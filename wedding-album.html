@@ -71,18 +71,6 @@
             padding: 10px;
             border-radius: 5px;
         }
-
-        #play-prompt {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 20px;
-            border-radius: 5px;
-            z-index: 1000;
-        }
     </style>
 </head>
 <body>
@@ -120,14 +108,11 @@
         </audio>
     </div>
 
-    
-
     <script>
         let currentIndex = 0;
         const images = document.querySelectorAll('.album-image');
         const totalImages = images.length;
         const music = document.getElementById('background-music');
-        const playPrompt = document.getElementById('play-prompt');
         let intervalId = null;
 
         function showImage(index) {
@@ -157,19 +142,15 @@
             }
         }
 
-        // 尝试自动播放并处理浏览器限制
+        // 尝试自动播放
         music.play().catch(() => {
-            // 如果自动播放失败，显示提示
-            playPrompt.style.display = 'block';
+            // 如果自动播放失败，等待用户点击
+            document.body.addEventListener('click', () => {
+                if (music.paused) {
+                    music.play();
+                }
+            }, { once: true });
         });
-
-        // 用户点击后启用音乐并隐藏提示
-        document.body.addEventListener('click', () => {
-            if (music.paused) {
-                music.play();
-                playPrompt.style.display = 'none';
-            }
-        }, { once: true });
 
         // 初始化显示第一张图片并开始轮播
         showImage(currentIndex);
