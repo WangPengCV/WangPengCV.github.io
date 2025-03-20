@@ -45,7 +45,7 @@
             overflow: hidden;
         }
 
-        .album img {
+        .album-image { /* 修改为 .album-image，与 HTML 类名一致 */
             width: 100%;
             height: auto;
             display: none;
@@ -61,7 +61,8 @@
             bottom: 0;
             width: 100%;
         }
-         .audio-player {
+
+        .audio-player {
             position: fixed;
             bottom: 20px;
             left: 20px;
@@ -73,7 +74,6 @@
     </style>
 </head>
 <body>
-
     <main>
         <h1>Wang & Wei</h1>
         <div class="album">
@@ -100,41 +100,59 @@
         </div>
     </main>
 
-
     <!-- 音乐播放器 -->
     <div class="audio-player">
-        <audio id="background-music" controls autoplay loop>
+        <audio id="background-music" controls loop>
             <source src="weddingImage/chose.mp3" type="audio/mp3">
             您的浏览器不支持音频元素。
         </audio>
     </div>
 
-    <script> 
-        // 自动轮播图片
+    <script>
         let currentIndex = 0;
         const images = document.querySelectorAll('.album-image');
         const totalImages = images.length;
-        const music = document.getElementById('background-music'); 
+        const music = document.getElementById('background-music');
+        let intervalId = null;
 
         function showImage(index) {
             images.forEach((img, i) => {
                 img.style.display = i === index ? 'block' : 'none';
             });
 
-            if (index === 0) {
-                music.play();  
+            if (index === 0 && music.paused) {
+                music.play().catch(err => console.log('音乐播放失败:', err));
             }
         }
 
         function nextImage() {
+            // 清除之前的计时器，避免重复计时
+            if (intervalId) clearTimeout(intervalId);
+
             currentIndex = (currentIndex + 1) % totalImages;
-            showImage(currentIndex);
+            const currentImage = images[currentIndex];
+
+            if (currentImage.complete) {
+                // 如果图片已加载完成，直接显示并计时 10 秒
+                showImage(currentIndex);
+                intervalId = setTimeout(nextImage, 10000);
+            } else {
+                // 如果图片未加载，等待加载完成后再显示并计时
+                currentImage.onload = () => {
+                    showImage(currentIndex);
+                    intervalId = setTimeout(nextImage, 10000);
+                };
+                currentImage.onerror = () => {
+                    console.log(`图片 ${currentImage.src} 加载失败`);
+                    // 如果加载失败，跳到下一张
+                    nextImage();
+                };
+            }
         }
 
+        // 初始化显示第一张图片并开始轮播
         showImage(currentIndex);
-
-        setInterval(nextImage, 10000);
-
+        nextImage();
     </script>
 </body>
 </html>
