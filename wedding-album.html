@@ -10,58 +10,58 @@
             font-size: 16px;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
-
         header {
             background-color: #333;
             color: white;
             padding: 10px;
         }
-
         header nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
+            text-align: center;
         }
-
         header nav ul li {
             display: inline;
             margin-right: 20px;
         }
-
         header nav ul li a {
             color: white;
             text-decoration: none;
         }
-
         main {
             text-align: center;
             padding: 20px;
+            min-height: 100vh;
+            position: relative;
         }
-
         .album {
             width: 80%;
             margin: 0 auto;
             overflow: hidden;
+            max-height: 80vh;
         }
-
         .album-image {
             width: 100%;
             height: auto;
+            max-height: 80vh;
             display: none;
             object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
-
+        .album-image.loaded {
+            opacity: 1;
+        }
         footer {
             background-color: #333;
             color: white;
             text-align: center;
             padding: 10px;
-            position: absolute;
-            bottom: 0;
             width: 100%;
         }
-
         .audio-player {
             position: fixed;
             bottom: 20px;
@@ -70,90 +70,109 @@
             color: white;
             padding: 10px;
             border-radius: 5px;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">主页</a></li>
+                <li><a href="project.html">项目</a></li>
+                <li><a href="blog.html">博客</a></li>
+            </ul>
+        </nav>
+    </header>
     <main>
         <h1>Wang & Wei</h1>
-        <div class="album">
-            <img src="weddingImage/1.jpg" alt="结婚照1" class="album-image">
-            <img src="weddingImage/2.jpg" alt="结婚照2" class="album-image">
-            <img src="weddingImage/3.jpg" alt="结婚照3" class="album-image">
-            <img src="weddingImage/4.jpg" alt="结婚照4" class="album-image">
-            <img src="weddingImage/5.jpg" alt="结婚照5" class="album-image">
-            <img src="weddingImage/6.jpg" alt="结婚照6" class="album-image">
-            <img src="weddingImage/7.jpg" alt="结婚照7" class="album-image">
-            <img src="weddingImage/8.jpg" alt="结婚照8" class="album-image">
-            <img src="weddingImage/9.jpg" alt="结婚照9" class="album-image">
-            <img src="weddingImage/10.jpg" alt="结婚照10" class="album-image">
-            <img src="weddingImage/11.jpg" alt="结婚照11" class="album-image">
-            <img src="weddingImage/12.jpg" alt="结婚照12" class="album-image">
-            <img src="weddingImage/13.jpg" alt="结婚照13" class="album-image">
-            <img src="weddingImage/14.jpg" alt="结婚照14" class="album-image">
-            <img src="weddingImage/15.jpg" alt="结婚照15" class="album-image">
-            <img src="weddingImage/16.jpg" alt="结婚照16" class="album-image">
-            <img src="weddingImage/17.jpg" alt="结婚照17" class="album-image">
-            <img src="weddingImage/18.jpg" alt="结婚照18" class="album-image">
-            <img src="weddingImage/19.jpg" alt="结婚照19" class="album-image">
-            <!-- 你可以在这里添加更多照片 -->
+        <div class="album" id="album">
+            <!-- 使用data-src进行延迟加载 -->
+            <picture>
+                <source data-srcset="weddingImage/1.webp" type="image/webp">
+                <img data-src="weddingImage/1.jpg" alt="结婚照1" class="album-image" width="800" height="600">
+            </picture>
+            <picture>
+                <source data-srcset="weddingImage/2.webp" type="image/webp">
+                <img data-src="weddingImage/2.jpg" alt="结婚照2" class="album-image" width="800" height="600">
+            </picture>
+            <!-- 重复类似结构直到19.jpg -->
+            <picture>
+                <source data-srcset="weddingImage/19.webp" type="image/webp">
+                <img data-src="weddingImage/19.jpg" alt="结婚照19" class="album-image" width="800" height="600">
+            </picture>
         </div>
     </main>
-
-    <!-- 音乐播放器 -->
     <div class="audio-player">
-        <audio id="background-music" controls autoplay loop>
-            <source src="weddingImage/chose.mp3" type="audio/mp3">
+        <audio id="background-music" controls preload="metadata" loop>
+            <source src="weddingImage/close.mp3" type="audio/mp3">
             您的浏览器不支持音频元素。
         </audio>
     </div>
-
     <script>
         let currentIndex = 0;
-        const images = document.querySelectorAll('.album-image');
-        const totalImages = images.length;
+        const pictures = document.querySelectorAll('.album picture');
+        const totalImages = pictures.length;
         const music = document.getElementById('background-music');
         let intervalId = null;
 
         function showImage(index) {
-            images.forEach((img, i) => {
+            pictures.forEach((picture, i) => {
+                const img = picture.querySelector('img');
                 img.style.display = i === index ? 'block' : 'none';
+                if (i === index && !img.classList.contains('loaded')) {
+                    const source = picture.querySelector('source');
+                    if (source.dataset.srcset) source.srcset = source.dataset.srcset;
+                    if (img.dataset.src) img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                }
             });
+        }
+
+        function preloadNextImage(index) {
+            const nextIndex = (index + 1) % totalImages;
+            const nextPicture = pictures[nextIndex];
+            const nextImg = nextPicture.querySelector('img');
+            const nextSource = nextPicture.querySelector('source');
+            if (!nextImg.classList.contains('loaded')) {
+                if (nextSource.dataset.srcset) nextSource.srcset = nextSource.dataset.srcset;
+                if (nextImg.dataset.src) nextImg.src = nextImg.dataset.src;
+                nextImg.classList.add('loaded');
+            }
         }
 
         function nextImage() {
             if (intervalId) clearTimeout(intervalId);
-
             currentIndex = (currentIndex + 1) % totalImages;
-            const currentImage = images[currentIndex];
+            const currentImage = pictures[currentIndex].querySelector('img');
 
             if (currentImage.complete) {
                 showImage(currentIndex);
+                preloadNextImage(currentIndex);
                 intervalId = setTimeout(nextImage, 10000);
             } else {
                 currentImage.onload = () => {
                     showImage(currentIndex);
+                    preloadNextImage(currentIndex);
                     intervalId = setTimeout(nextImage, 10000);
                 };
                 currentImage.onerror = () => {
-                    console.log(`图片 ${currentImage.src} 加载失败`);
+                    console.log(`图片 ${currentImage.dataset.src} 加载失败`);
                     nextImage();
                 };
             }
         }
 
-        // 尝试自动播放
+        // 尝试自动播放音乐
         music.play().catch(() => {
-            // 如果自动播放失败，等待用户点击
             document.body.addEventListener('click', () => {
-                if (music.paused) {
-                    music.play();
-                }
+                if (music.paused) music.play();
             }, { once: true });
         });
 
         // 初始化显示第一张图片并开始轮播
         showImage(currentIndex);
+        preloadNextImage(currentIndex);
         nextImage();
     </script>
 </body>
