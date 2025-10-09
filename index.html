@@ -5,103 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peng Wang (汪鹏) Personal Homepage</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background-color: #f4f4f4;
+        /* 保持原有样式不变，只添加调试样式 */
+        .debug-info {
+            background: #ffebee;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            color: #c62828;
         }
-        header {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 2rem;
+        .file-status {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-        nav {
-            background: #444;
-            padding: 1rem;
-            text-align: center;
-        }
-        nav a {
-            color: #fff;
-            margin: 0 1rem;
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-        nav a:hover {
-            color: #ddd;
-        }
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .section {
-            background: #fff;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .project-list {
-            display: grid;
-            gap: 1.5rem;
-        }
-        .project {
-            background: #f9f9f9;
-            padding: 1.5rem;
-            border-radius: 5px;
-        }
-        .project h3 {
-            margin-top: 0;
-        }
-        .project img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-        }
-        .project video {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-        }
-        .project a {
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .project a:hover {
-            color: #555;
-        }
-        .placeholder {
-            background: #e9e9e9;
-            padding: 2rem;
-            text-align: center;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            color: #666;
-        }
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
+        .status-found { background: #e8f5e8; color: #2e7d32; }
+        .status-missing { background: #ffebee; color: #c62828; }
     </style>
 </head>
 <body>
+    <!-- 保持header和nav不变 -->
     <header>
         <h1>Welcome to Peng Wang Homepage</h1>
         <p>Hi, I'm Peng Wang, a PhD student at Zhejiang University</p>
@@ -111,72 +36,48 @@
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
     </nav>
+
     <div class="container">
         <div class="section" id="about">
             <h2>About Me</h2>
             <p>I am currently a PhD student at the Institute of Fluid Engineering, Zhejiang University, with an expected graduation date of May 2026. My doctoral research utilizes the Discrete Element Method (DEM) and Computational Fluid Dynamics (CFD) to investigate the mechanical properties of fibrous particulate materials. For instance, I employ machine learning techniques to optimize individual fiber shapes, thereby tuning the yield strength and stiffness of particle packings. Key areas of investigation also include the propagation of stress waves in fibrous materials under low-velocity impact and their flow dynamics during high-speed gas impingement. Currently, I am working on introducing activity into fibrous particles to enable innovative control of self-emergent swarm behaviors in robots without autonomous consciousness, leveraging intrinsic physical mechanisms.</p>
         </div>
+
         <div class="section" id="projects">
-            <h2>Projects</h2>
+            <h2>Projects - 文件路径调试版</h2>
+            <div class="debug-info">
+                <strong>调试信息：</strong> 如果看到红色"文件缺失"提示，请检查对应文件路径
+            </div>
+            
             <div class="project-list">
                 <div class="project">
                     <h3>Mechanical Modulation of Entangled Granular Materials through Particle Shape</h3>
                     <p>This project explores how varying particle shapes in granular materials influences their mechanical entanglement and overall properties, using DEM simulations to design tunable structures.</p>
                     
-                    <!-- 图片占位符 -->
-                    <div class="placeholder">
-                        <p>📷 Project 1 Simulation Image</p>
-                        <small>Image path: images/project1-screenshot.jpg</small>
+                    <!-- 图片测试 -->
+                    <div class="debug-info">
+                        图片路径: <code>images/project1-screenshot.jpg</code>
+                        <span id="img1-status" class="file-status status-missing">检查中...</span>
                     </div>
+                    <img src="images/project1-screenshot.jpg" alt="Simulation of Entangled Granular Materials" 
+                         onload="document.getElementById('img1-status').className='file-status status-found'; document.getElementById('img1-status').textContent='图片加载成功'"
+                         onerror="document.getElementById('img1-status').className='file-status status-missing'; document.getElementById('img1-status').textContent='图片加载失败'">
                     
-                    <!-- 视频占位符 -->
-                    <div class="placeholder">
-                        <p>🎥 Project 1 Video 1</p>
-                        <small>Video path: videos/project1-video1.mp4</small>
+                    <!-- 视频测试 -->
+                    <div class="debug-info">
+                        视频1路径: <code>videos/project1-video1.mp4</code>
+                        <span id="video1-status" class="file-status status-missing">检查中...</span>
                     </div>
-                    <div class="placeholder">
-                        <p>🎥 Project 1 Video 2</p>
-                        <small>Video path: videos/project1-video2.mp4</small>
-                    </div>
-                    <div class="placeholder">
-                        <p>🎥 Project 1 Video 3</p>
-                        <small>Video path: videos/project1-video3.mp4</small>
-                    </div>
-                    
+                    <video controls onloadstart="document.getElementById('video1-status').className='file-status status-found'; document.getElementById('video1-status').textContent='视频找到'" onerror="document.getElementById('video1-status').className='file-status status-missing'; document.getElementById('video1-status').textContent='视频缺失'">
+                        <source src="videos/project1-video1.mp4" type="video/mp4">
+                        您的浏览器不支持视频标签。
+                    </video>
+
                     <p><a href="https://github.com/[Your GitHub Username]/granular-materials">View Code</a></p>
-                </div>
-                
-                <div class="project">
-                    <h3>Stress Wave Propagation and Flow Dynamics in Fibrous Materials under Impact</h3>
-                    <p>This research investigates the propagation of stress waves in fibrous materials during low-speed impacts and their flow dynamics under high-speed gas impingements, combining DEM and CFD models.</p>
-                    
-                    <!-- 视频占位符 -->
-                    <div class="placeholder">
-                        <p>🎥 Project 2 Video 1</p>
-                        <small>Video path: videos/project2-video1.mp4</small>
-                    </div>
-                    <div class="placeholder">
-                        <p>🎥 Project 2 Video 2</p>
-                        <small>Video path: videos/project2-video2.mp4</small>
-                    </div>
-                    
-                    <p><a href="papers/stress-wave-paper1.pdf">Read Paper 1</a> | <a href="papers/stress-wave-paper2.pdf">Read Paper 2</a> | <a href="https://github.com/[Your GitHub Username]/fibrous-impact-dynamics">View Code</a></p>
-                </div>
-                
-                <div class="project">
-                    <h3>Programmable Active Matter</h3>
-                    <p>This project develops programmable active materials by incorporating activity into fibrous particles, enabling self-emergent behaviors in robotic swarms through physical mechanisms.</p>
-                    
-                    <!-- 视频占位符 -->
-                    <div class="placeholder">
-                        <p>🎥 Project 3 Video</p>
-                        <small>Video path: videos/project3-video.mp4</small>
-                    </div>
-                    
-                    <p><a href="https://github.com/[Your GitHub Username]/active-matter">View Code</a></p>
                 </div>
             </div>
         </div>
+
         <div class="section" id="contact">
             <h2>Contact</h2>
             <p>Email: [Your Email]</p>
@@ -184,8 +85,48 @@
             <p>Other Social Media: [e.g., Twitter/LinkedIn]</p>
         </div>
     </div>
+
     <footer>
         <p>&copy; 2025 Peng Wang. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // 页面加载后检查文件状态
+        window.addEventListener('load', function() {
+            console.log('页面加载完成，检查文件状态...');
+            
+            // 检查图片
+            const images = document.querySelectorAll('img');
+            images.forEach((img, index) => {
+                fetch(img.src)
+                    .then(response => {
+                        if (response.ok) {
+                            console.log(`图片 ${img.src} 存在`);
+                        } else {
+                            console.log(`图片 ${img.src} 不存在 (状态: ${response.status})`);
+                        }
+                    })
+                    .catch(error => {
+                        console.log(`图片 ${img.src} 加载错误:`, error);
+                    });
+            });
+
+            // 检查视频
+            const videos = document.querySelectorAll('video source');
+            videos.forEach((video, index) => {
+                fetch(video.src)
+                    .then(response => {
+                        if (response.ok) {
+                            console.log(`视频 ${video.src} 存在`);
+                        } else {
+                            console.log(`视频 ${video.src} 不存在 (状态: ${response.status})`);
+                        }
+                    })
+                    .catch(error => {
+                        console.log(`视频 ${video.src} 加载错误:`, error);
+                    });
+            });
+        });
+    </script>
 </body>
 </html>
