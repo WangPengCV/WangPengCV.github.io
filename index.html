@@ -81,6 +81,29 @@
         .project a:hover {
             color: #555;
         }
+        .about-wrapper{
+            display:flex;
+            flex-wrap:wrap;
+            align-items:flex-start;
+            gap:1.5rem;
+        }
+        .about-photo{
+            flex:0 0 150px;          /* 固定宽度 150px */
+            text-align:center;
+        }
+        .about-photo img{
+            width:150px;             /* 强制宽度 */
+            height:150px;            /* 强制高度，保持正方形 */
+            object-fit:cover;        /* 防止拉伸变形 */
+            border-radius:50%;       /* 圆形 */
+            box-shadow:0 2px 8px rgba(0,0,0,0.15);
+        }
+        .about-text{flex:1;}
+
+        @media (max-width:600px){
+            .about-wrapper{flex-direction:column;align-items:center;}
+            .about-photo{flex:none;}
+        }
         footer {
             background: #333;
             color: #fff;
@@ -107,7 +130,7 @@
             <h2>About Me</h2>
             <div class="about-wrapper">
                 <div class="about-photo">
-                    <img src="images/photos.jpg" alt="Peng Wang">
+                    <img src="images/photo.jpg" alt="Peng Wang">
                 </div>
                 <div class="about-text">
                     <p>As a PhD candidate at Zhejiang University's Institute of Fluid Engineering, my research leverages high-performance computing (HPC) to model complex fibrous materials. Through self-developed large-scale DEM-CFD simulations and machine learning, I investigate mechanical properties, wave propagation, and flow dynamics. My current work focuses on developing programmable active matter using computational design principles for swarm robotics applications.</p>
